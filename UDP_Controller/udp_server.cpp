@@ -45,16 +45,22 @@ void open_server(const char* ip, int port)
 		string responce("Got it");
 		UDP_SERVER_STARTED = true;
 		int last = recvfrom(sockServer, receBuf, 1024, 0, (SOCKADDR*)&addr_Clt, &fromlen);
-		cout << inet_ntoa(addr_Clt.sin_addr) << " : " << receBuf << endl;
 		if (last > 0)
 		{
 			//判断接收到的数据是否为空
 			receBuf[last] = '\0'; //给字符数组加一个'\0'，表示结束了。不然输出有乱码
-			if (!strcmp(receBuf, "bye"))
+			cout << inet_ntoa(addr_Clt.sin_addr) << " : " << receBuf << endl;
+			//if (!strcmp(receBuf, "bye"))
+			//{
+			//	cout << " Client exited..." << endl;
+			//	closesocket(sockServer);
+			//	return;
+			//}
+			//else 
+			if (!strcmp(receBuf, "c"))
 			{
-				cout << " Client exited..." << endl;
-				closesocket(sockServer);
-				return;
+				GetClipboardText(receBuf);
+				responce = receBuf;
 			}
 			else if (!strcmp(receBuf, "shutdown"))
 			{

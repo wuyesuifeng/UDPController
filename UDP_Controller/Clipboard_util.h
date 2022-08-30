@@ -7,22 +7,21 @@
 using namespace std;
 
 bool CopyTextToClipboard(const char* text);
-string GetClipboardText(char* buf);
+void GetClipboardText(char* buf);
 
 // 读取剪贴板中的文本
-string GetClipboardText(char* buf)
+void GetClipboardText(char* buf)
 {
     OpenClipboard(nullptr);
     HANDLE hData = GetClipboardData(CF_TEXT);
     if (hData == NULL)
-        return "Not is CF_TEXT!";
+        cout << "Not is CF_TEXT!" << endl;
 
     char* pszText = static_cast<char*>(GlobalLock(hData));
     strcpy(buf, pszText);
 
     GlobalUnlock(hData);
     CloseClipboard();
-    return buf;
 }
 
 // 复制文本到剪贴板
