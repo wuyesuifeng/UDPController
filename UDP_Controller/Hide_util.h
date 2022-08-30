@@ -3,7 +3,7 @@
 
 const wchar_t* IDI_SMALL = L"UDP_Controller.exe", * APP_NAME = L"UDP Controller";
 constexpr auto IDR_MAINFRAME = 136886;
-constexpr UINT_PTR ID_SHOW = 1, ID_CLOSE = 0;
+constexpr UINT_PTR ID_SHOW = 1, ID_CLOSE = 2;
 
 NOTIFYICONDATA nid{};
 HMENU hMenu;
